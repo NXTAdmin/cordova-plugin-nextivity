@@ -50,7 +50,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
-            r.put("lteEarfcn", this.getLteEarfcn());
+            r.put("lteEarfcn", getLteEarfcn());
             
             
             callbackContext.success(r);
