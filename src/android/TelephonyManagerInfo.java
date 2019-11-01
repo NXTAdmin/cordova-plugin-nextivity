@@ -308,8 +308,8 @@ public class TelephonyManagerInfo extends CordovaPlugin {
     public String getLteEarfcn(){
           Activity activity = cordova.getActivity();
 //        CellIdentityLte ci = (CellIdentityLte) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        CellIdentityLte ci = (CellIdentityLte) activity.getSystemService(Context.TELEPHONY_SERVICE);
-        String earfcn = String.valueOf(ci.getEarfcn());
+//        CellIdentityLte ci = (CellIdentityLte) activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String earfcn = new String("JdoEarfcn"); //String.valueOf(ci.getEarfcn());
         return earfcn;
     }
 
