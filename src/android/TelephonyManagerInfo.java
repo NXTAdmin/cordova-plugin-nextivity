@@ -48,6 +48,8 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
+            r.put("lteEarfcn", this.getLteEarfcn());
+            
             
             callbackContext.success(r);
             return true;
@@ -300,4 +302,12 @@ public class TelephonyManagerInfo extends CordovaPlugin {
         return returnValue;
     }
 
+    
+    public String getLteEarfcn(){
+        CellIdenityLte ci = (CellIdenityLte) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        String earfcn = ci.getEarfcn().toString();
+        return number;
+    }
+
+    
 }

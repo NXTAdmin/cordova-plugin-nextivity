@@ -29,7 +29,9 @@ function TelephonyManagerInfo() {
         me.voiceMailAlphaTag = info.voiceMailAlphaTag;
         me.voiceMailNumber = info.voiceMailNumber;
         me.hasIccCard = info.hasIccCard;
-        me.dataActivity = info.dataActivity;        
+        me.dataActivity = info.dataActivity;  
+        me.lteEarfcn = info.lteEarfcn;  
+        
     },function(e) {
         utils.alert("[ERROR] Error initializing TelephonyManagerInfo: " + e);
     });
