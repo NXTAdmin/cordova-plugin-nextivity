@@ -15,6 +15,7 @@ import android.util.Log;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.telephony.CellIdentityLte;
+import android.app.Activity;
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
