@@ -14,7 +14,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import android.telephony.CellIdentity.CellIdentityLte;
+import android.telephony.CellIdentityLte;
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
@@ -305,7 +305,9 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 
     
     public String getLteEarfcn(){
-        CellIdentityLte ci = (CellIdentity.CellIdentityLte) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+          Activity activity = cordova.getActivity();
+//        CellIdentityLte ci = (CellIdentityLte) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        CellIdentityLte ci = (CellIdentityLte) activity.getSystemService(Context.TELEPHONY_SERVICE);
         String earfcn = String.valueOf(ci.getEarfcn());
         return earfcn;
     }
