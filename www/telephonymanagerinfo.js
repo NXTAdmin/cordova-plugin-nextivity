@@ -30,8 +30,7 @@ function TelephonyManagerInfo() {
         me.voiceMailNumber = info.voiceMailNumber;
         me.hasIccCard = info.hasIccCard;
         me.dataActivity = info.dataActivity;  
-//        me.lteEarfcn = info.lteEarfcn;  
-        me.lteEarfcn = "12345";  
+        me.lteEarfcn = info.lteEarfcn;  
         
     },function(e) {
         utils.alert("[ERROR] Error initializing TelephonyManagerInfo: " + e);

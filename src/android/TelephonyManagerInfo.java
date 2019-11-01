@@ -14,7 +14,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import android.telephony.CellIdentityLte;
+import android.telephony.CellIdentity.CellIdentityLte;
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
@@ -49,7 +49,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
-//            r.put("lteEarfcn", this.getLteEarfcn());
+            r.put("lteEarfcn", this.getLteEarfcn());
             
             
             callbackContext.success(r);
