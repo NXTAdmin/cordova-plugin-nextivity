@@ -9,13 +9,13 @@
     <author>John Owen</author>
     <keywords>cordova,nextivity</keywords>
 
-    <js-module src="www/telephony.js" name="telephony">
-        <clobbers target="telephony" />
+    <js-module src="www/Telephony.js" name="Telephony">
+        <clobbers target="Telephony" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
-        <source-file src="src/android/Telephony.java" target-dir="src/com/nextivity/Telephony" />
+        <source-file src="src/android/Telephony.java" target-dir="src/com/nextivity/telephony" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
