@@ -321,13 +321,13 @@ public class TelephonyManagerInfo extends CordovaPlugin {
     }
 
     
-    public String getLteEarfcn(){
-          Activity activity = cordova.getActivity();
+//    public String getLteEarfcn(){
+//          Activity activity = cordova.getActivity();
 //        CellIdentityLte ci = (CellIdentityLte) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 //        CellIdentityLte ci = (CellIdentityLte) activity.getSystemService(Context.TELEPHONY_SERVICE);
-        String earfcn = new String("JdoEarfcn"); //String.valueOf(ci.getEarfcn());
-        return earfcn;
-    }
+//        String earfcn = new String("JdoEarfcn"); //String.valueOf(ci.getEarfcn());
+//        return earfcn;
+//    }
 
     public String getCellularInfo()
     {
@@ -340,7 +340,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
 //            Log.v(TAG, "getAllCellInfo returned null");
         }
         else {
-            for (final CellInfo info : telephonyManager.getAllCellInfo()) {
+            for (final CellInfo info : tm.getAllCellInfo()) {
                 if (info instanceof CellInfoGsm) {
                     log += "GSM@";
                     CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
@@ -370,7 +370,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
                     final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
                     log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                 } else {
-                    Log.v(TAG, "Unknown Network Type");
+//                    Log.v(TAG, "Unknown Network Type");
                 }
             }
         }
