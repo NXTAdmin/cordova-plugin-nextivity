@@ -4,7 +4,7 @@ var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec'),
     cordova = require('cordova');
 
-function TelephonyManagerInfo() {
+function Telephony() {
     var me = this;
 
     me.getInfo(function(info) {
