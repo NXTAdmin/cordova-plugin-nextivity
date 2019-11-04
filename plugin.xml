@@ -15,7 +15,7 @@
 
     <!-- android -->
     <platform name="android">
-        <source-file src="src/android/telephony.java" target-dir="src/com/nextivity/telephony" />
+        <source-file src="src/android/Telephony.java" target-dir="src/com/nextivity/Telephony" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
