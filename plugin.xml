@@ -15,6 +15,11 @@
 
     <!-- android -->
     <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Telephony" >
+                <param name="android-package" value="com.nextivity.telephony.Telephony"/>
+            </feature>
+        </config-file>
         <source-file src="src/android/Telephony.java" target-dir="src/com/nextivity/telephony" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
