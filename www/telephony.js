@@ -33,12 +33,12 @@ function TelephonyManagerInfo() {
         me.cellInfo = info.cellInfo;  
         
     },function(e) {
-        utils.alert("[ERROR] Error initializing TelephonyManagerInfo: " + e);
+        utils.alert("[ERROR] Error initializing Telephony: " + e);
     });
 }
 
-TelephonyManagerInfo.prototype.getInfo = function(successCallback, errorCallback) {
-    exec(successCallback, errorCallback, "TelephonyManagerInfo", "getInfo", []);
+Telephony.prototype.getInfo = function(successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "Telephony", "getInfo", []);
 };
 
-module.exports = new TelephonyManagerInfo();
+module.exports = new Telephony();

@@ -33,7 +33,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 
-public class TelephonyManagerInfo extends CordovaPlugin {
+public class Telephony extends CordovaPlugin {
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
