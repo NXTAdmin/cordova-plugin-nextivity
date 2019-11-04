@@ -50,7 +50,7 @@ public class TelephonyManagerInfo extends CordovaPlugin {
             r.put("voiceMailNumber", this.getVoiceMailNumber());
             r.put("hasIccCard", this.hasIccCard());
             r.put("dataActivity", this.getDataActivity());
-            r.put("lteEarfcn", getLteEarfcn());
+            r.put("cellInfo", getCellularInfo());
             
             
             callbackContext.success(r);
@@ -313,5 +313,53 @@ public class TelephonyManagerInfo extends CordovaPlugin {
         return earfcn;
     }
 
+    public String getCellularInfo()
+    {
+        String cellularInfo = "CI: ";
+        String log = "";
+        
+        TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+
+        if(tm.getAllCellInfo()==null) {
+//            Log.v(TAG, "getAllCellInfo returned null");
+        }
+        else {
+            for (final CellInfo info : telephonyManager.getAllCellInfo()) {
+                if (info instanceof CellInfoGsm) {
+                    log += "GSM@";
+                    CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
+                    log += gsm_cell.getCid() + "#" + gsm_cell.getLac() + "#" + gsm_cell.getMcc() + "#" + gsm_cell.getMnc() + "_";
+
+                    final CellSignalStrengthGsm gsm = ((CellInfoGsm) info).getCellSignalStrength();
+                    log += gsm.getDbm() + "#" + gsm.getLevel()+"#"+gsm.getAsuLevel()+":";
+                } else if (info instanceof CellInfoCdma) {
+                    log += "CDMA@";
+                    CellIdentityCdma cdma_cell = ((CellInfoCdma) info).getCellIdentity();
+                    log += cdma_cell.getBasestationId() + "#" + cdma_cell.getNetworkId() + "#" + cdma_cell.getSystemId() + "#" + cdma_cell.getSystemId() + "_";
+
+                    final CellSignalStrengthCdma cdma = ((CellInfoCdma) info).getCellSignalStrength();
+                    log += cdma.getDbm() + "#" + cdma.getLevel()+"#"+cdma.getAsuLevel()+":";
+                } else if (info instanceof CellInfoLte) {
+                    log += "LTE@";
+                    CellIdentityLte lte_cell = ((CellInfoLte) info).getCellIdentity();
+                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
+
+                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
+                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
+                } else if (info instanceof CellInfoWcdma) {
+                    log += "WCDMA@";
+                    CellIdentityWcdma wcdma_cell = ((CellInfoWcdma) info).getCellIdentity();
+                    log += wcdma_cell.getCid() + "#" + wcdma_cell.getLac() + "#" + wcdma_cell.getMcc() + "#" + wcdma_cell.getMnc() + "_";
+
+                    final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
+                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
+                } else {
+                    Log.v(TAG, "Unknown Network Type");
+                }
+            }
+        }
+        cellularInfo = log;
+        return cellularInfo;
+    }
     
 }
