@@ -342,33 +342,35 @@ public class TelephonyManagerInfo extends CordovaPlugin {
         else {
             for (final CellInfo info : tm.getAllCellInfo()) {
                 if (info instanceof CellInfoGsm) {
-                    log += "GSM@";
-                    CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
-                    log += gsm_cell.getCid() + "#" + gsm_cell.getLac() + "#" + gsm_cell.getMcc() + "#" + gsm_cell.getMnc() + "_";
+                    log += "GSM:TBD";
+//                    CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
+//                    log += gsm_cell.getCid() + "#" + gsm_cell.getLac() + "#" + gsm_cell.getMcc() + "#" + gsm_cell.getMnc() + "_";
 
-                    final CellSignalStrengthGsm gsm = ((CellInfoGsm) info).getCellSignalStrength();
-                    log += gsm.getDbm() + "#" + gsm.getLevel()+"#"+gsm.getAsuLevel()+":";
+//                    final CellSignalStrengthGsm gsm = ((CellInfoGsm) info).getCellSignalStrength();
+//                    log += gsm.getDbm() + "#" + gsm.getLevel()+"#"+gsm.getAsuLevel()+":";
                 } else if (info instanceof CellInfoCdma) {
-                    log += "CDMA@";
-                    CellIdentityCdma cdma_cell = ((CellInfoCdma) info).getCellIdentity();
-                    log += cdma_cell.getBasestationId() + "#" + cdma_cell.getNetworkId() + "#" + cdma_cell.getSystemId() + "#" + cdma_cell.getSystemId() + "_";
+                    log += "CDMA:TBD";
+//                    CellIdentityCdma cdma_cell = ((CellInfoCdma) info).getCellIdentity();
+//                    log += cdma_cell.getBasestationId() + "#" + cdma_cell.getNetworkId() + "#" + cdma_cell.getSystemId() + "#" + cdma_cell.getSystemId() + "_";
 
-                    final CellSignalStrengthCdma cdma = ((CellInfoCdma) info).getCellSignalStrength();
-                    log += cdma.getDbm() + "#" + cdma.getLevel()+"#"+cdma.getAsuLevel()+":";
+//                    final CellSignalStrengthCdma cdma = ((CellInfoCdma) info).getCellSignalStrength();
+//                    log += cdma.getDbm() + "#" + cdma.getLevel()+"#"+cdma.getAsuLevel()+":";
                 } else if (info instanceof CellInfoLte) {
-                    log += "LTE@";
+                    log += "LTE: ";
                     CellIdentityLte lte_cell = ((CellInfoLte) info).getCellIdentity();
-                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
+                    log += lte_cell.getEarfcn();
+//                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
 
-                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
-                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
+//                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
+//                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
                 } else if (info instanceof CellInfoWcdma) {
-                    log += "WCDMA@";
+                    log += "WCDMA: ";
                     CellIdentityWcdma wcdma_cell = ((CellInfoWcdma) info).getCellIdentity();
-                    log += wcdma_cell.getCid() + "#" + wcdma_cell.getLac() + "#" + wcdma_cell.getMcc() + "#" + wcdma_cell.getMnc() + "_";
+                    log += wcdma_cell.getUarfcn();
+//                    log += wcdma_cell.getCid() + "#" + wcdma_cell.getLac() + "#" + wcdma_cell.getMcc() + "#" + wcdma_cell.getMnc() + "_";
 
-                    final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
-                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
+//                    final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
+//                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                 } else {
 //                    Log.v(TAG, "Unknown Network Type");
                 }
