@@ -14,8 +14,24 @@ import android.provider.Settings;
 import android.util.Log;
 import android.content.Context;
 import android.telephony.TelephonyManager;
+
+
+import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityLte;
-import android.app.Activity;
+import android.telephony.CellIdentityWcdma;
+import android.telephony.CellIdentityCdma;
+import android.telephony.CellInfo;
+import android.telephony.CellInfoCdma;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoLte;
+import android.telephony.CellInfoWcdma;
+import android.telephony.CellSignalStrengthCdma;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellSignalStrengthLte;
+import android.telephony.CellSignalStrengthWcdma;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+
 
 public class TelephonyManagerInfo extends CordovaPlugin {
 
