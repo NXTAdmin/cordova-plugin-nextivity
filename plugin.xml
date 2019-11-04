@@ -6,24 +6,20 @@
     version="1.1.0">
     <name>Nextivity</name>
     <description>Cordova Nextivity Plugin</description>
+    <author>John Owen</author>
     <keywords>cordova,nextivity</keywords>
 
-    <js-module src="www/telephonymanagerinfo.js" name="TelephonyManagerInfo">
-        <clobbers target="TelephonyManagerInfo" />
+    <js-module src="www/telephony.js" name="telephony">
+        <clobbers target="telephony" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="TelephonyManagerInfo" >
-                <param name="android-package" value="com.egemenmede.telephonymanagerinfo.TelephonyManagerInfo"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/android/TelephonyManagerInfo.java" target-dir="src/com/egemenmede/telephonymanagerinfo" />
+        <source-file src="src/android/telephony.java" target-dir="src/com/nextivity/telephony" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         </config-file>
     </platform>
 

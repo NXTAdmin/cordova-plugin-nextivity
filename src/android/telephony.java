@@ -1,5 +1,5 @@
-/* TelephonyManagerInfo Plugin - Egemen Mede - @delipenguen - 24.03.2016 */
-package com.egemenmede.telephonymanagerinfo;
+/* Telephony Plugin - John Owen */
+package com.nextivity.telephony;
 
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;

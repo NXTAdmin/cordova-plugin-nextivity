@@ -1,27 +1,28 @@
+only needed to publish to NPM 
 {
-  "name": "cordova-plugin-telephonymanagerinfo",
+  "name": "cordova-plugin-nextivity",
   "version": "1.1.0",
-  "description": "Cordova TelephonyManagerInfo Plugin",
+  "description": "Cordova Nextivity Plugin",
   "cordova": {
-    "id": "cordova-plugin-telephonymanagerinfo",
+    "id": "cordova-plugin-nextivity",
     "platforms": [
       "android"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/egemenmede/cordova-plugin-telephonymanagerinfo.git"
+    "url": "git+TBD"
   },
   "keywords": [
     "cordova",
-    "telephonymanagerinfo",
+    "nextivity",
     "ecosystem:cordova",
     "cordova-android"
   ],
-  "author": "Egemen Mede",
-  "license": "GPL",
+  "author": "John Owen",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/egemenmede/cordova-plugin-telephonymanagerinfo/issues"
+    "url": "TBD"
   },
-  "homepage": "https://github.com/egemenmede/cordova-plugin-telephonymanagerinfo#readme"
+  "homepage": "TBD"
 }
