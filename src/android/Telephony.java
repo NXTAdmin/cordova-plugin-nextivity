@@ -72,6 +72,8 @@ public class Telephony extends CordovaPlugin {
             callbackContext.success(r);
             return true;
         }else {
+            JSONObject e = new JSONObject();
+            e.put("error", "Telephony plugin had really bad error.");
             return false;
         }
     }
