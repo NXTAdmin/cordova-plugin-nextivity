@@ -12,7 +12,7 @@ var Telephony = {
   },
 }
 
-module.exports = new Telephony;
+module.exports = Telephony;
 
     
 /*
