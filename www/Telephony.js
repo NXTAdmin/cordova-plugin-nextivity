@@ -5,26 +5,14 @@ var argscheck = require('cordova/argscheck'),
     cordova = require('cordova');
     
     
-    
-function Telephony() {
-    var me = this;
 
-    me.getInfo(
-        // success callback
-        function(info) {   
-            me.cellInfo = info.cellInfo;  
-            
-        // error callback
-        },function(e) {         // 
-            utils.alert("[ERROR] Error initializing Telephony: " + e);
-    });
+var Telephony = {
+  getInfo: function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "Telephony", "getInfo", []);
+  },
 }
 
-Telephony.prototype.getInfo = function(successCallback, errorCallback) {
-    exec(successCallback, errorCallback, "Telephony", "getInfo", []);
-};
-
-module.exports = new Telephony();
+module.exports = new Telephony;
 
     
 /*
