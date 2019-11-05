@@ -92,7 +92,8 @@ public class Telephony extends CordovaPlugin {
                     log += lte_cell.getEarfcn();
 //                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
 
-//                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
+                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
+                    log += " " + lte.getDbm() + " dBm";
 //                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
                 } else if (info instanceof CellInfoWcdma) {
                     log += " WCDMA: ";
@@ -100,7 +101,8 @@ public class Telephony extends CordovaPlugin {
                     log += wcdma_cell.getUarfcn();
 //                    log += wcdma_cell.getCid() + "#" + wcdma_cell.getLac() + "#" + wcdma_cell.getMcc() + "#" + wcdma_cell.getMnc() + "_";
 
-//                    final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
+                    final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
+                    log += " " + wcdma.getDbm() + " dBm";
 //                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                 } else {
 //                    Log.v(TAG, "Unknown Network Type");
