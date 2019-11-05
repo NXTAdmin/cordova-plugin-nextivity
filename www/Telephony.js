@@ -7,7 +7,7 @@ var argscheck = require('cordova/argscheck'),
     
 
 var Telephony = {
-  getInfo: function(successCallback, errorCallback) {
+  getCellInfo: function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "Telephony", "getCellInfo", []);
   },
 }
