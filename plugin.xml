@@ -9,8 +9,8 @@
     <author>John Owen</author>
     <keywords>cordova,nextivity</keywords>
 
-    <js-module src="www/Telephony.js" name="Telephony">
-        <clobbers target="window.Telephony" />
+    <js-module src="www/nxty.js" name="nxty">
+        <clobbers target="window.nxty" />
     </js-module>
 
     <!-- android -->
