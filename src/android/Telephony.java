@@ -98,7 +98,7 @@ public class Telephony extends CordovaPlugin {
                     log += " LTE: ";
                     CellIdentityLte lte_cell = ((CellInfoLte) info).getCellIdentity();
                     log += lte_cell.getEarfcn();
-                    log += " isReg: " + lte_cell.isRegistered();
+                    log += " isReg: " + info.isRegistered();
 //                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
 
                     final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
