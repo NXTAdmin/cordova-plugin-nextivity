@@ -68,7 +68,8 @@ public class Telephony extends CordovaPlugin {
         
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         ServiceState serviceState = tm.getServiceState();
-        log += "ChNum: " + serviceState.getChannelNumber();
+        log += " ChNum: " + serviceState.getChannelNumber();
+        log += " OpName: " + serviceState.getOperatorAlphaLong();
         
         
         
