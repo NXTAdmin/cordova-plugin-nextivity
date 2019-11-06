@@ -30,6 +30,7 @@ import android.telephony.CellSignalStrengthGsm;
 import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.TelephonyManager;
+import android.telephony.ServiceState;
 import android.util.Log;
 
 
@@ -66,7 +67,13 @@ public class Telephony extends CordovaPlugin {
         String log = "";
         
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-
+        ServiceState serviceState = tm.getServiceState();
+        log += "ChNum: " + serviceState.getChannelNumber();
+        
+        
+        
+        
+/*        
         if(tm.getAllCellInfo()==null) {
 //            Log.v(TAG, "getAllCellInfo returned null");
         }
@@ -109,6 +116,9 @@ public class Telephony extends CordovaPlugin {
                 }
             }
         }
+*/        
+        
+        
         cellularInfo = log;
         return cellularInfo;
     }
