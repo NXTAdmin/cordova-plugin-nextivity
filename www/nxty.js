@@ -6,7 +6,7 @@ var argscheck = require('cordova/argscheck'),
     
     
 
-var nxty = {
+var Telephony = {
 
   // Telephony functions....
   // Call from js: nxty.getCellInfo()
@@ -16,6 +16,6 @@ var nxty = {
   },
 }
 
-module.exports = nxty;
+module.exports = Telephony;
 
     
