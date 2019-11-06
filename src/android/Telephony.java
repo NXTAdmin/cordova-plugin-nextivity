@@ -67,14 +67,14 @@ public class Telephony extends CordovaPlugin {
         String log = "";
         
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        ServiceState serviceState = tm.getServiceState();
-        log += " ChNum: " + serviceState.getChannelNumber();
-        log += " OpName: " + serviceState.getOperatorAlphaLong();
+//        ServiceState serviceState = tm.getServiceState();
+//        log += " ChNum: " + serviceState.getChannelNumber();
+//        log += " OpName: " + serviceState.getOperatorAlphaLong();
         
         
         
         
-/*        
+        
         if(tm.getAllCellInfo()==null) {
 //            Log.v(TAG, "getAllCellInfo returned null");
         }
@@ -98,6 +98,7 @@ public class Telephony extends CordovaPlugin {
                     log += " LTE: ";
                     CellIdentityLte lte_cell = ((CellInfoLte) info).getCellIdentity();
                     log += lte_cell.getEarfcn();
+                    log += " isReg: " + lte_cell.isRegistered();
 //                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
 
                     final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
@@ -117,7 +118,7 @@ public class Telephony extends CordovaPlugin {
                 }
             }
         }
-*/        
+        
         
         
         cellularInfo = log;
