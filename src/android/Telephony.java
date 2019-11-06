@@ -64,7 +64,7 @@ public class Telephony extends CordovaPlugin {
     private String getCellularInfo()
     {
         String cellularInfo = "CI: ";
-        String log = "";
+        String log = "Java: ";
         
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 //        ServiceState serviceState = tm.getServiceState();
@@ -76,6 +76,7 @@ public class Telephony extends CordovaPlugin {
         
         
         if(tm.getAllCellInfo()==null) {
+            log += " getAllCellInfo returned null.";
 //            Log.v(TAG, "getAllCellInfo returned null");
         }
         else {
@@ -114,6 +115,7 @@ public class Telephony extends CordovaPlugin {
                     log += " " + wcdma.getDbm() + " dBm";
 //                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                 } else {
+                    log += " Unknown network type.";
 //                    Log.v(TAG, "Unknown Network Type");
                 }
             }
