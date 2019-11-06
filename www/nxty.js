@@ -6,16 +6,16 @@ var argscheck = require('cordova/argscheck'),
     
     
 
-var Telephony = {
+var phony = {
 
   // Telephony functions....
-  // Call from js: nxty.getCellInfo()
+  // Call from js: phony.getCellInfo()
   // Call in Telephony.java: Telephony.getCellinfo().
   getCellInfo: function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "Telephony", "getCellInfo", []);
   },
 }
 
-module.exports = Telephony;
+module.exports = phony;
 
     

@@ -10,7 +10,7 @@
     <keywords>cordova,nextivity</keywords>
 
     <js-module src="www/nxty.js" name="nxty">
-        <clobbers target="window.Telephony" />
+        <clobbers target="window.phony" />
     </js-module>
 
     <!-- android -->
