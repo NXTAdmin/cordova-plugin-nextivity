@@ -82,7 +82,7 @@ public class Telephony extends CordovaPlugin {
         else {
             for (final CellInfo info : tm.getAllCellInfo()) {
                 
-                if( log.length() )
+                if( log.length() > 0 )
                 {
                     log += ", ";
                 }
