@@ -63,8 +63,8 @@ public class Telephony extends CordovaPlugin {
 
     private String getCellularInfo()
     {
-        String cellularInfo = "CI: ";
-        String log = "Java: ";
+        String cellularInfo = "";
+        String log = "";
         
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 //        ServiceState serviceState = tm.getServiceState();
@@ -81,41 +81,48 @@ public class Telephony extends CordovaPlugin {
         }
         else {
             for (final CellInfo info : tm.getAllCellInfo()) {
+                
+                if( log.length() )
+                {
+                    log += ", ";
+                }
+                
                 if (info instanceof CellInfoGsm) {
-                    log += "GSM:TBD";
+                    log += "tech:GSM fcn:0 isReg:false dbm:0";  // tbd
 //                    CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
 //                    log += gsm_cell.getCid() + "#" + gsm_cell.getLac() + "#" + gsm_cell.getMcc() + "#" + gsm_cell.getMnc() + "_";
 
 //                    final CellSignalStrengthGsm gsm = ((CellInfoGsm) info).getCellSignalStrength();
 //                    log += gsm.getDbm() + "#" + gsm.getLevel()+"#"+gsm.getAsuLevel()+":";
                 } else if (info instanceof CellInfoCdma) {
-                    log += "CDMA:TBD";
+                    log += "tech:CDMA fcn:0 isReg:false dbm:0";  // tbd
 //                    CellIdentityCdma cdma_cell = ((CellInfoCdma) info).getCellIdentity();
 //                    log += cdma_cell.getBasestationId() + "#" + cdma_cell.getNetworkId() + "#" + cdma_cell.getSystemId() + "#" + cdma_cell.getSystemId() + "_";
 
 //                    final CellSignalStrengthCdma cdma = ((CellInfoCdma) info).getCellSignalStrength();
 //                    log += cdma.getDbm() + "#" + cdma.getLevel()+"#"+cdma.getAsuLevel()+":";
                 } else if (info instanceof CellInfoLte) {
-                    log += " LTE: ";
+                    log += "tech:LTE fcn:";
                     CellIdentityLte lte_cell = ((CellInfoLte) info).getCellIdentity();
                     log += lte_cell.getEarfcn();
-                    log += " isReg: " + info.isRegistered();
+                    log += " isReg:" + info.isRegistered();
 //                    log += lte_cell.getCi() + "#" + lte_cell.getPci() + "#" + lte_cell.getMcc() + "#" + lte_cell.getMnc() + "_";
 
                     final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
-                    log += " " + lte.getDbm() + " dBm";
+                    log += " dbm:" + lte.getDbm();
 //                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
                 } else if (info instanceof CellInfoWcdma) {
-                    log += " WCDMA: ";
+                    log += "tech:WCDMA fcn:";
                     CellIdentityWcdma wcdma_cell = ((CellInfoWcdma) info).getCellIdentity();
                     log += wcdma_cell.getUarfcn();
+                    log += " isReg:" + info.isRegistered();
 //                    log += wcdma_cell.getCid() + "#" + wcdma_cell.getLac() + "#" + wcdma_cell.getMcc() + "#" + wcdma_cell.getMnc() + "_";
 
                     final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
-                    log += " " + wcdma.getDbm() + " dBm";
+                    log += " dbm:" + wcdma.getDbm();
 //                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                 } else {
-                    log += " Unknown network type.";
+                    log += "tech:???? fcn:0 isReg:false dbm:0";
 //                    Log.v(TAG, "Unknown Network Type");
                 }
             }
