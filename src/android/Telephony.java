@@ -79,6 +79,10 @@ public class Telephony extends CordovaPlugin {
             log += " getAllCellInfo returned null.";
 //            Log.v(TAG, "getAllCellInfo returned null");
         }
+        else if(tm.getAllCellInfo().isEmpty()) {
+            log += " getAllCellInfo returned empty.";
+//            Log.v(TAG, "getAllCellInfo returned empty");
+        }
         else {
             for (final CellInfo info : tm.getAllCellInfo()) {
                 
