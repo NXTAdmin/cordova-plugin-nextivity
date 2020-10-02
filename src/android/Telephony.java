@@ -115,6 +115,7 @@ public class Telephony extends CordovaPlugin {
                     final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
                     log += " dbm:" + lte.getDbm();
 //                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
+                    log += " bw:" + lte_cell.getBandwidth();
                 } else if (info instanceof CellInfoWcdma) {
                     log += "tech:WCDMA fcn:";
                     CellIdentityWcdma wcdma_cell = ((CellInfoWcdma) info).getCellIdentity();
