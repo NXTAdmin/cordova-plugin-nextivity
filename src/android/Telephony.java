@@ -126,7 +126,8 @@ public class Telephony extends CordovaPlugin {
                     final CellSignalStrengthWcdma wcdma = ((CellInfoWcdma) info).getCellSignalStrength();
                     log += " dbm:" + wcdma.getDbm();
 //                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
-                } else {
+                    log += " bw:5000";  // WCDMA is always 5 MHz, 5000 KHz
+                 } else {
                     log += "tech:???? fcn:0 isReg:false dbm:0";
 //                    Log.v(TAG, "Unknown Network Type");
                 }
