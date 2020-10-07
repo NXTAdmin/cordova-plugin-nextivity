@@ -115,7 +115,15 @@ public class Telephony extends CordovaPlugin {
                     final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
                     log += " dbm:" + lte.getDbm();
 //                    log += lte.getDbm() + "#" + lte.getLevel()+"#"+lte.getAsuLevel()+":";
-                    log += " bw:" + lte_cell.getBandwidth();
+                    
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) 
+                    {
+                        log += " bw:" + lte_cell.getBandwidth();  // getBandwidth() introduced in API 28, Android P.
+                    }
+                    else
+                    {
+                        log += " bw:" + 0;  // Return 0 bandwidth
+                    }
                 } else if (info instanceof CellInfoWcdma) {
                     log += "tech:WCDMA fcn:";
                     CellIdentityWcdma wcdma_cell = ((CellInfoWcdma) info).getCellIdentity();
