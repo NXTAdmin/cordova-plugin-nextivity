@@ -16,6 +16,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 
 
+import android.telephony.CellIdentity;
 import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityLte;
 import android.telephony.CellIdentityWcdma;
