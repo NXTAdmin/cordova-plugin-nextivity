@@ -139,7 +139,7 @@ public class Telephony extends CordovaPlugin {
                     log += " bw:5000";  // WCDMA is always 5 MHz, 5000 KHz
                 } else if (info instanceof CellInfoNr) {    // 5G
                     log += "tech:5GNR fcn:";
-                    CellIdentityNr nr_cell = ((CellInfoNr) info).getCellIdentity();
+                    CellIdentity nr_cell = ((CellInfoNr) info).getCellIdentity();
                     log += nr_cell.getNrarfcn();
                     log += " isReg:" + info.isRegistered();
 
