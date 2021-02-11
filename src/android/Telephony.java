@@ -135,6 +135,17 @@ public class Telephony extends CordovaPlugin {
                     log += " dbm:" + wcdma.getDbm();
 //                    log += wcdma.getDbm() + "#" + wcdma.getLevel()+"#"+wcdma.getAsuLevel()+":";
                     log += " bw:5000";  // WCDMA is always 5 MHz, 5000 KHz
+                } else if (info instanceof CellInfoNr) {    // 5G
+                    log += "tech:5GNR fcn:";
+                    CellIdentityNr nr_cell = ((CellInfoNr) info).getCellIdentity();
+                    log += nr_cell.getNrarfcn();
+                    log += " isReg:" + info.isRegistered();
+
+                    // TBD...
+//                    final CellSignalStrengthLte lte = ((CellInfoLte) info).getCellSignalStrength();
+//                    log += " dbm:" + lte.getDbm();
+                    log += " dbm:0";
+                    log += " bw:" + 0;  // Return 0 bandwidth
                  } else {
                     log += "tech:???? fcn:0 isReg:false dbm:0";
 //                    Log.v(TAG, "Unknown Network Type");
