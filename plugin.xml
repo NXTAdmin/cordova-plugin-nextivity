@@ -29,4 +29,13 @@
         </config-file>
     </platform>
 
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Telephony">
+                <param name="ios-package" value="CDVTelephony"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVTelephony.swift" />
+    </platform>
 </plugin>

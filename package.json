@@ -5,7 +5,8 @@
   "cordova": {
     "id": "cordova-plugin-nextivity",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "repository": {
