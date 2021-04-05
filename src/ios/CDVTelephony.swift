@@ -4,8 +4,8 @@ import CoreTelephony;
 * Notes: The @objc shows that this class & function should be exposed to Cordova.
 */
 @objc(Telephony) class Telephony : CDVPlugin {
-    @objc(getCellInfo:) // Declare your function name.
-  func getCellInfo(command: CDVInvokedUrlCommand) { // write the function code.
+    @objc(getCellInfo:)
+    func getCellInfo(command: CDVInvokedUrlCommand) {
     /*
      * Always assume that the plugin will fail.
      * Set the plugin result to fail.
