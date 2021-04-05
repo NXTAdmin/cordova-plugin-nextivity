@@ -17,5 +17,3 @@ var phony = {
 }
 
 module.exports = phony;
-
-    

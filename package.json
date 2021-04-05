@@ -1,11 +1,12 @@
 {
   "name": "cordova-plugin-nextivity",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Cordova Nextivity Plugin",
   "cordova": {
     "id": "cordova-plugin-nextivity",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "repository": {
