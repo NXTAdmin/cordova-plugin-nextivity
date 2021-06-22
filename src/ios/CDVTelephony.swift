@@ -37,8 +37,8 @@ import CoreTelephony;
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
   }
 
-  @objc(getTelephonyNetworkInfo:)
-  func getTelephonyNetworkInfo(command: CDVInvokedUrlCommand) {
+  @objc(getCTCarrier:)
+  func getCTCarrier(command: CDVInvokedUrlCommand) {
     /*
    * Always assume that the plugin will fail.
    * Set the plugin result to fail.
@@ -48,16 +48,22 @@ import CoreTelephony;
 
     let carrier = CTCarrier();
 
-    let res = [
-      "allowsVOIP": carrier.allowsVOIP,
-      "carrierName": carrier.carrierName ?? "",
-      "isoCountryCode": carrier.isoCountryCode ?? "",
-      "mobileCountryCode": carrier.mobileCountryCode ?? "",
-      "mobileNetworkCode": carrier.mobileNetworkCode ?? "",
-    ] as [String : Any]
+    if carrier != nil {
+      let data = [
+        "allowsVOIP": carrier.allowsVOIP,
+        // because carrierName is optional string param of CTCarrier set a default value ""
+        "carrierName": carrier.carrierName ?? "",
+        // because isoCountryCode is optional string param of CTCarrier set a default value ""
+        "isoCountryCode": carrier.isoCountryCode ?? "",
+        // because mobileCountryCode is optional string param of CTCarrier set a default value ""
+        "mobileCountryCode": carrier.mobileCountryCode ?? "",
+        // because mobileNetworkCode is optional string param of CTCarrier set a default value ""
+        "mobileNetworkCode": carrier.mobileNetworkCode ?? "",
+      ] as [String: Any]
 
-    // Set the plugin result to succeed.
-    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: res);
+      // Set the plugin result to succeed.
+      let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: data);
+    }
 
     // Send the function result back to Cordova.
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);

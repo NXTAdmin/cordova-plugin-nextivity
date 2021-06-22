@@ -120,14 +120,9 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
   }
 };
 
-phony.getTelephonyNetworkInfo = (success, error) => {
-  exec(processResult, error, 'Telephony',
-      'getTelephonyNetworkInfo', []);
-
-  function processResult(res) {
-    console.warn(`getTelephonyNetworkInfo - res:`, res);
-    success(res);
-  }
+phony.getCTCarrier = (success, error) => {
+  exec(success, error, 'Telephony',
+      'getCTCarrier', []);
 };
 
 module.exports = phony;
