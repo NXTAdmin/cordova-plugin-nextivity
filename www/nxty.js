@@ -121,7 +121,7 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
 };
 
 phony.getTelephonyNetworkInfo = (success, error) => {
-  exec(processResult, error, 'a',
+  exec(processResult, error, 'Telephony',
       'getTelephonyNetworkInfo', []);
 
   function processResult(res) {
