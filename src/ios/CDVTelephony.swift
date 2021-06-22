@@ -43,20 +43,21 @@ import CoreTelephony;
    * Always assume that the plugin will fail.
    * Set the plugin result to fail.
    */
-//    var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "The cellular technology is unknown");  // TODO
+   var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR,
+   messageAs: "The carrier information is unknown");
 
     let carrier = CTCarrier();
 
-    let a = [
+    let res = [
       "allowsVOIP": carrier.allowsVOIP,
-      "carrierName": carrier.carrierName!,
-      "isoCountryCode": carrier.isoCountryCode!,
-      "mobileCountryCode": carrier.mobileCountryCode!,
-      "mobileNetworkCode": carrier.mobileNetworkCode!,
+      "carrierName": carrier.carrierName ?? "",
+      "isoCountryCode": carrier.isoCountryCode ?? "",
+      "mobileCountryCode": carrier.mobileCountryCode ?? "",
+      "mobileNetworkCode": carrier.mobileNetworkCode ?? "",
     ] as [String : Any]
 
     // Set the plugin result to succeed.
-    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: a);
+    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: res);
 
     // Send the function result back to Cordova.
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
