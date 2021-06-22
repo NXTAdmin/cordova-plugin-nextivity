@@ -10,7 +10,8 @@ var phony = {
   // Call from js: phony.getCellInfo()
   // Call in Telephony.java: Telephony.getCellinfo().
   getCellInfo: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "Telephony", "getCellInfo", []);
+    cordova.exec(successCallback, errorCallback, 'Telephony', 'getCellInfo',
+        []);
   },
 };
 
@@ -116,6 +117,16 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
       // which returns a Radio Access Technology Constant
       success(res);
     }
+  }
+};
+
+phony.getTelephonyNetworkInfo = (success, error) => {
+  exec(processResult, error, 'Telephony',
+      'getTelephonyNetworkInfo', []);
+
+  function processResult(res) {
+    console.warn(`getTelephonyNetworkInfo - res:`, res);
+    success(res);
   }
 };
 
