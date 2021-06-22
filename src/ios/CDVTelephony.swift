@@ -48,11 +48,11 @@ import CoreTelephony;
     var carrier = CTCarrier();
 
     var a = [
-      allowsVOIP: carrier.allowsVOIP,
-      carrierName: carrier.carrierName,
-      isoCountryCode: carrier.isoCountryCode,
-      mobileCountryCode: carrier.mobileCountryCode,
-      mobileNetworkCode: carrier.mobileNetworkCode,
+      "allowsVOIP": carrier.allowsVOIP,
+      "carrierName": carrier.carrierName,
+      "isoCountryCode": carrier.isoCountryCode,
+      "mobileCountryCode": carrier.mobileCountryCode,
+      "mobileNetworkCode": carrier.mobileNetworkCode,
     ]
 
     // Set the plugin result to succeed.
