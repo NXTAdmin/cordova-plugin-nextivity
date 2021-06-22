@@ -47,7 +47,7 @@ import CoreTelephony;
 
     let telephony = CTTelephonyNetworkInfo();
     // Set the plugin result to succeed.
-    pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: telephony);
+    var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: telephony);
 
     // Send the function result back to Cordova.
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
