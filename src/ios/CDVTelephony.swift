@@ -45,9 +45,18 @@ import CoreTelephony;
    */
 //    var pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "The cellular technology is unknown");  // TODO
 
-    let telephony = CTTelephonyNetworkInfo();
+    var carrier = CTCarrier();
+
+    var a = [
+      allowsVOIP: carrier.allowsVOIP,
+      carrierName: carrier.carrierName,
+      isoCountryCode: carrier.isoCountryCode,
+      mobileCountryCode: carrier.mobileCountryCode,
+      mobileNetworkCode: carrier.mobileNetworkCode,
+    ]
+
     // Set the plugin result to succeed.
-    var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: telephony);
+    var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: a);
 
     // Send the function result back to Cordova.
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
