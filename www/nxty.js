@@ -120,9 +120,23 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
   }
 };
 
+/**
+ * Retrieve the CTCarrier object from the device.
+ *
+ * **iOS only**
+ * @param {getCTCarrierCb} success
+ * @param {getCTCarrierErrCb} error
+ */
 phony.getCTCarrier = (success, error) => {
-  exec(success, error, 'Telephony',
-      'getCTCarrier', []);
+  console.warn(window.device);
+  console.warn(window.device.platform);
+  if (window.device.platform !== 'iOS') {
+    const msg = 'phony.getCTCarrier can only be called from an iOS device';
+    console.warn(msg);
+    error(msg);
+  } else {
+    exec(success, error, 'Telephony', 'getCTCarrier', []);
+  }
 };
 
 module.exports = phony;
