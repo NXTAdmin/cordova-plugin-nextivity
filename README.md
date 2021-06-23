@@ -88,14 +88,6 @@ res = {
 }
 ```
 
-### getCTCarrierAsync ###
-
-Same as [getCellInfo](#getCellInfo) but uses a Promise instead of callbacks.
-
-```javascript
-phony.getCTCarrierAsync();
-```
-
 ## Radio Access Technology Constants ##
 
 Constants that describe the current radio access technology. See the full docs at

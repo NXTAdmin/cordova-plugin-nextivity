@@ -140,24 +140,6 @@ phony.getCTCarrier = (success, error) => {
 };
 
 /**
- * Retrieve the CTCarrier object from the device.
- *
- * **iOS only**
- * @returns {Promise<CTCarrier>}
- */
-phony.getCTCarrierAsync = () => {
-  return new Promise((resolve, reject) => {
-    if (window.device.platform !== 'iOS') {
-      const msg = 'phony.getCTCarrier can only be called from an iOS device';
-      console.warn(msg);
-      reject(msg);
-    } else {
-      phony.getCTCarrier((res) => resolve(res), reject);
-    }
-  });
-};
-
-/**
  * @callback getCTCarrierCb
  * @param {CTCarrier} CTCarrier
  */
