@@ -123,8 +123,8 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
 /**
  * Retrieve Carrier object from the device.
  *
- * @param {getCTCarrierCb} success
- * @param {getCTCarrierErrCb} error
+ * @param {getCarrierInfoCb} success
+ * @param {getCarrierInfoErrCb} error
  */
 phony.getCarrierInfo = (success, error) => {
   exec(processReturn, error, 'Telephony', 'getCarrierInfo', []);
@@ -181,17 +181,17 @@ phony.getCarrierInfo = (success, error) => {
 };
 
 /**
- * @callback getCTCarrierCb
- * @param {CTCarrier} CTCarrier
+ * @callback getCarrierInfoCb
+ * @param {CarrierInfo} CTCarrier
  */
 
 /**
- * @callback getCTCarrierErrCb
+ * @callback getCarrierInfoErrCb
  * @param {string} error message
  */
 
 /**
- * @typedef CTCarrier
+ * @typedef CarrierInfo
  * @property {string} carrierName
  * @property {string} isoCountryCode
  * @property {string} mobileCountryCode
