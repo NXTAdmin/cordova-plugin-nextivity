@@ -10,7 +10,7 @@ This plugin allows you to retrieve cellular information from Android and iOS dev
 
 - [getCellInfo](#getCellInfo) (Android)
 - [getCurrentRadioAccessTechnology](#getCurrentRadioAccessTechnology) (iOS)
-- [getCTCarrier](#getCTCarrier) (iOS)
+- [getCarrierInfo](#getCarrierInfo)
 
 ### getCellInfo ###
 
@@ -26,7 +26,8 @@ phony.getCellInfo(success, error);
 
 *iOS only*
 
-Get the radio access technology constant that the phone is currently operating on. Wraps the iOS methods
+Get the radio access technology constant that the phone is currently operating on. Wraps the iOS
+methods
 [CTTelephonyNetworkInfo.serviceCurrentRadioAccessTechnology](https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/3024510-servicecurrentradioaccesstechnol)
 if iOS >= 12 or
 [CTTelephonyNetworkInfo.currentRadioAccessTechnology](https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/1616895-currentradioaccesstechnology)
@@ -45,20 +46,18 @@ Returns a [Radio Access Technology Constant](#radio-access-technology-constants)
 'CTRadioAccessTechnologyWCDMA'
 ```
 
-### getCTCarrier ###
+### getCarrierInfo ###
 
-*iOS only*
-
-Get information about the user’s cellular service provider. Gets the iOS data object CTCarrier.
-[CTCarrier iOS developer docs](https://developer.apple.com/documentation/coretelephony/ctcarrier)
+Get information about the user’s cellular service provider.
 
 ```javascript
-phony.getCellInfo(success, error);
+phony.getCarrierInfo(success, error);
 ```
 
 #### Supported Platforms ####
 
 - iOS 4.0+
+- Android 1+
 - Mac Catalyst 13.0+
 
 #### Success ####
@@ -67,26 +66,43 @@ Returns an object with the following properties:
 
 | Property            | Type    | Description                                                             |
 | ------------------- | ------- | ----------------------------------------------------------------------- |
-| `allowsVOIP`        | Boolean | Indicates if the carrier allows making VoIP calls on its network.       |
 | `carrierName`       | String  | The name of the user’s home cellular service provider.                  |
-| `isoCountryCode`    | String  | The ISO 3166-1 country code for the user’s cellular service provider.   |
+| `isoCountryCode`    | String  | The ISO 3166-1 country code (lower case) for the user’s cellular service provider.   |
 | `mobileCountryCode` | String  | The mobile country code (MCC) for the user’s cellular service provider. |
 | `mobileNetworkCode` | String  | The mobile network code (MNC) for the user’s cellular service provider. |
 
-*`allowsVOIP` will always contain a value. The other properties default to an empty string (`''`) when not reported by the device.*
+#### Example Return Values ####
 
-##### Example Return Values #####
+```javascript
+res = {
+  carrierName: "T-Mobile",
+  isoCountryCode: "us",
+  mobileCountryCode: "310",
+  mobileNetworkCode: "260",
+}
+```
 
 ```javascript
 // No carrier information reported by phone.
 res = {
-  allowsVOIP: true,
-  carrierName: '',
-  isoCountryCode: '',
-  mobileCountryCode: '',
-  mobileNetworkCode: ''
+  carrierName: "",
+  isoCountryCode: "",
+  mobileCountryCode: "",
+  mobileNetworkCode: "",
 }
 ```
+
+##### Platform Docs #####
+
+###### iOS ######
+
+- [CTCarrier](https://developer.apple.com/documentation/coretelephony/ctcarrier)
+
+###### Android ######
+
+- [getNetworkCountryIso](https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkCountryIso())
+- [getNetworkOperator](https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkOperator())
+- [getNetworkOperatorName](https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkOperatorName())
 
 ## Radio Access Technology Constants ##
 
