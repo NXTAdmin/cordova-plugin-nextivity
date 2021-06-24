@@ -37,8 +37,8 @@ import CoreTelephony;
     self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
   }
 
-  @objc(getCTCarrier:)
-  func getCTCarrier(command: CDVInvokedUrlCommand) {
+  @objc(getCarrierInfo:)
+  func getCarrierInfo(command: CDVInvokedUrlCommand) {
     let carrier = CTCarrier();
 
     let data = [
