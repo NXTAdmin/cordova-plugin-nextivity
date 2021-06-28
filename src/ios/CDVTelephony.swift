@@ -39,7 +39,8 @@ import CoreTelephony;
 
   @objc(getCarrierInfo:)
   func getCarrierInfo(command: CDVInvokedUrlCommand) {
-    let carrier = CTCarrier();
+    let networkInfo = CTTelephonyNetworkInfo()
+    let carrier = networkInfo.subscriberCellularProvider;
 
     let data = [
       "allowsVOIP": carrier.allowsVOIP,
