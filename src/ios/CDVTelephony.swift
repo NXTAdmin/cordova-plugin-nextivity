@@ -39,20 +39,24 @@ import CoreTelephony;
 
   @objc(getCarrierInfo:)
   func getCarrierInfo(command: CDVInvokedUrlCommand) {
+    var carrier: CTCarrier?
+
     let networkInfo = CTTelephonyNetworkInfo()
-    let carrier = networkInfo.subscriberCellularProvider;
+
+    if #available(iOS 12.0, *) {
+        if let key = networkInfo.serviceSubscriberCellularProviders?.first(where: {$0.value.carrierName != nil})?.key {
+            carrier = networkInfo.serviceSubscriberCellularProviders?[key]
+        }
+    } else {
+        carrier = networkInfo.subscriberCellularProvider;
+    };
 
     let data = [
-      "allowsVOIP": carrier.allowsVOIP,
-      // because carrierName is optional string param of CTCarrier set a default value ""
-      "carrierName": carrier.carrierName ?? "",
-      // because isoCountryCode is optional string param of CTCarrier set a default value ""
-      "isoCountryCode": carrier.isoCountryCode ?? "",
-      // because mobileCountryCode is optional string param of CTCarrier set a default value ""
-      "mobileCountryCode": carrier.mobileCountryCode ?? "",
-      // because mobileNetworkCode is optional string param of CTCarrier set a default value ""
-      "mobileNetworkCode": carrier.mobileNetworkCode ?? "",
-    ] as [String: Any]
+        "carrierName": carrier?.carrierName ?? "",
+        "isoCountryCode": carrier?.isoCountryCode ?? "",
+        "mobileCountryCode": carrier?.mobileCountryCode ?? "",
+        "mobileNetworkCode": carrier?.mobileNetworkCode ?? "",
+    ]
 
     // Set the plugin result to succeed.
     let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: data);
