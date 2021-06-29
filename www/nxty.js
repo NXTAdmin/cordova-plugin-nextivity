@@ -10,7 +10,8 @@ var phony = {
   // Call from js: phony.getCellInfo()
   // Call in Telephony.java: Telephony.getCellinfo().
   getCellInfo: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "Telephony", "getCellInfo", []);
+    cordova.exec(successCallback, errorCallback, 'Telephony', 'getCellInfo',
+        []);
   },
 };
 
@@ -118,5 +119,83 @@ phony.getCurrentRadioAccessTechnology = (success, error) => {
     }
   }
 };
+
+/**
+ * Retrieve Carrier object from the device.
+ *
+ * @param {getCarrierInfoCb} success
+ * @param {getCarrierInfoErrCb} error
+ */
+phony.getCarrierInfo = (success, error) => {
+  exec(processReturn, error, 'Telephony', 'getCarrierInfo', []);
+
+  /**
+   *
+   * @param {{carrierName: string, isoCountryCode: string, mccmnc: string} | {carrierName: string, isoCountryCode: string, mobileCountryCode: string, mobileNetworkCode: string}} res
+   */
+  function processReturn(res) {
+    const obj = {
+      carrierName: '',
+      isoCountryCode: '',
+      mobileCountryCode: '',
+      mobileNetworkCode: '',
+    };
+
+    if (res.carrierName !== '') {
+      populateReturnObj();
+    }
+
+    success(obj);
+
+    function populateReturnObj() {
+      obj.carrierName = res.carrierName;
+      obj.isoCountryCode = res.isoCountryCode.toLowerCase();
+
+      if ('mccmnc' in res) {
+        sliceMccMnc();
+      } else {
+        passMccMncValues();
+      }
+    }
+
+    /**
+     * Android returns MCCMNC combined
+     *
+     * mobileCountryCode is the first 3 digits.
+     * mobileNetworkCode is the 2 or 3 digits after the first 3.
+     *
+     */
+    function sliceMccMnc() {
+      obj.mobileCountryCode = res.mccmnc.slice(0, 3);
+      obj.mobileNetworkCode = res.mccmnc.slice(3);
+    }
+
+    /**
+     * iOS returns MCC & MNC independently
+     */
+    function passMccMncValues() {
+      obj.mobileCountryCode = res.mobileCountryCode;
+      obj.mobileNetworkCode = res.mobileNetworkCode;
+    }
+  }
+};
+
+/**
+ * @callback getCarrierInfoCb
+ * @param {CarrierInfo} CTCarrier
+ */
+
+/**
+ * @callback getCarrierInfoErrCb
+ * @param {string} error message
+ */
+
+/**
+ * @typedef CarrierInfo
+ * @property {string} carrierName
+ * @property {string} isoCountryCode
+ * @property {string} mobileCountryCode
+ * @property {string} mobileNetworkCode
+ */
 
 module.exports = phony;

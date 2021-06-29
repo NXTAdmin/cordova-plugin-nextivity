@@ -49,10 +49,12 @@ public class Telephony extends CordovaPlugin {
         if ("getCellInfo".equals(action)) {
             JSONObject s = new JSONObject();
             s.put("cellInfo", getCellularInfo());
-                        
+
             callbackContext.success(s);
             return true;
-        }else {
+        } else if ("getCarrierInfo".equals(action)) {
+            return getCarrierInfo(args, callbackContext);
+        } else {
             JSONObject e = new JSONObject();
             e.put("error", "Telephony plugin had really bad error.");
             callbackContext.error(e);
@@ -68,7 +70,7 @@ public class Telephony extends CordovaPlugin {
     {
         String cellularInfo = "";
         String log = "";
-        
+
         TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 //        ServiceState serviceState = tm.getServiceState();
 //        log += " ChNum: " + serviceState.getChannelNumber();
@@ -93,7 +95,7 @@ public class Telephony extends CordovaPlugin {
                 {
                     log += ", ";
                 }
-                
+
                 if (info instanceof CellInfoGsm) {
                     log += "tech:GSM fcn:0 isReg:false dbm:0";  // tbd
 //                    CellIdentityGsm gsm_cell = ((CellInfoGsm) info).getCellIdentity();
@@ -149,17 +151,26 @@ public class Telephony extends CordovaPlugin {
 //                    log += " dbm:" + lte.getDbm();
                     log += " dbm:0";
                     log += " bw:" + 0;  // Return 0 bandwidth
-                 } else {
+                } else {
                     log += "tech:???? fcn:0 isReg:false dbm:0";
 //                    Log.v(TAG, "Unknown Network Type");
                 }
             }
         }
-        
-        
-        
+
+
         cellularInfo = log;
         return cellularInfo;
     }
-    
+
+    private boolean getCarrierInfo(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        TelephonyManager tm = (TelephonyManager) this.cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+
+        JSONObject r = new JSONObject();
+        r.put("carrierName", tm.getNetworkOperatorName());
+        r.put("isoCountryCode", tm.getNetworkCountryIso());
+        r.put("mccmnc", tm.getNetworkOperator());
+        callbackContext.success(r);
+        return true;
+    }
 }
