@@ -1,19 +1,33 @@
 #import "TelephonyPlugin.h"
-#import <Cordova/CDVPlugin.h>
+//#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 @implementation GetCarrierInfo
 
-- (NSDictionary)getCarrierInfo:(CDVInvokedUrlCommand*)command
+- (void)getCarrierInfo:(CDVInvokedUrlCommand*)command
 {
-    CTTelephonyNetworkInfo* networkInfo = [CTTelephonyNetworkInfo new];
-    CTCarrier* carrier = networkInfo.subscriberCellularProvider;
-    
-    return @{
-        "carrierName": carrier?.carrierName ?? "",
-        "isoCountryCode": carrier?.isoCountryCode ?? "",
-        "mobileCountryCode": carrier?.mobileCountryCode ?? "",
-        "mobileNetworkCode": carrier?.mobileNetworkCode ?? "",
-    }
+    CDVPluginResult* pluginResult;
+
+//    CTTelephonyNetworkInfo* networkInfo = [CTTelephonyNetworkInfo new];
+//    CTCarrier* carrier = networkInfo.subscriberCellularProvider;
+
+        NSDictionary *data = @{
+                @"carrierName" : @"",
+                @"isoCountryCode" : @"",
+                @"mobileCountryCode" : @"",
+                @"mobileNetworkCode" : @"",
+        };
+
+//    NSDictionary *data = @{
+//            carrierName : carrier?.carrierName ?? "",
+//            isoCountryCode : carrier?.isoCountryCode ?? "",
+//            mobileCountryCode : carrier?.mobileCountryCode ?? "",
+//            mobileNetworkCode : carrier?.mobileNetworkCode ?? "",
+//
+//    }
+
+
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:data];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
