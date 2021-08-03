@@ -1,6 +1,6 @@
 #import <Cordova/CDVPlugin.h>
 
-@interface GetCarrierInfo : CDVPlugin
+@interface Telephony : CDVPlugin
 
  - (void)getCarrierInfo:(CDVInvokedUrlCommand*)command;
 

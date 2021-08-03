@@ -1,7 +1,7 @@
 #import "TelephonyPlugin.h"
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
-@implementation GetCarrierInfo
+@implementation Telephony
 
 - (void)getCarrierInfo:(CDVInvokedUrlCommand*)command
 {
