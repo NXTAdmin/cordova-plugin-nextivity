@@ -16,16 +16,14 @@
          */
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"The cellular technology is unknown"];
         NSString* tech;
-        CTTelephonyNetworkInfo* networkInfo = [CTTelephonyNetworkInfo new];
         NSString* NO_TECH = @"none";
+        CTTelephonyNetworkInfo* networkInfo = [CTTelephonyNetworkInfo new];
+
+        tech = NO_TECH;
 
         if (@available(iOS 12.0, *)) {
-            NSString* EMPTY_RETURN = @"[:]";
-
-            tech = networkInfo.serviceCurrentRadioAccessTechnology.description ? networkInfo.serviceCurrentRadioAccessTechnology.description : NO_TECH;
-
-            if (tech == EMPTY_RETURN) {
-                tech = NO_TECH;
+            for (NSString* key in networkInfo.serviceCurrentRadioAccessTechnology){
+                tech = networkInfo.serviceCurrentRadioAccessTechnology[key];
             }
         } else {
             // Fallback on earlier versions iOS 7.0-12.0
@@ -59,9 +57,8 @@
         if (@available(iOS 12.0, *)) {
             // Find the active provider
             for (NSString* key in networkInfo.serviceSubscriberCellularProviders){
-                if (networkInfo.serviceSubscriberCellularProviders[key] != nil){
+                if (networkInfo.serviceSubscriberCellularProviders[key].mobileNetworkCode != nil){
                     carrier = networkInfo.serviceSubscriberCellularProviders[key];
-                    break;
                 }
             }
         } else {
