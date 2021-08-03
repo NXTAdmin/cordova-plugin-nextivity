@@ -2,6 +2,7 @@
 
 @interface Telephony : CDVPlugin
 
- - (void)getCarrierInfo:(CDVInvokedUrlCommand*)command;
+- (void)getCurrentRadioAccessTechnology:(CDVInvokedUrlCommand*)command;
+- (void)getCarrierInfo:(CDVInvokedUrlCommand*)command;
 
 @end

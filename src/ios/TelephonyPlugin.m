@@ -4,6 +4,44 @@
 
 @implementation Telephony
 
+-(void) getCurrentRadioAccessTechnology:(CDVInvokedUrlCommand*)command
+{
+    // Run in background thread
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* pluginResult;
+
+        /*
+         * Always assume that the plugin will fail.
+         * Set the plugin result to fail.
+         */
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"The cellular technology is unknown"];
+        NSString* tech;
+        CTTelephonyNetworkInfo* networkInfo = [CTTelephonyNetworkInfo new];
+        NSString* NO_TECH = @"none";
+
+        if (@available(iOS 12.0, *)) {
+            NSString* EMPTY_RETURN = @"[:]";
+
+            tech = networkInfo.serviceCurrentRadioAccessTechnology.description ? networkInfo.serviceCurrentRadioAccessTechnology.description : NO_TECH;
+
+            if (tech == EMPTY_RETURN) {
+                tech = NO_TECH;
+            }
+        } else {
+            // Fallback on earlier versions iOS 7.0-12.0
+            tech = networkInfo.currentRadioAccessTechnology ? networkInfo.currentRadioAccessTechnology : NO_TECH;
+        }
+
+        if (tech != NO_TECH) {
+            // Set the plugin result to succeed.
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:tech];
+        }
+
+        // Send the function result back to Cordova.
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+  }
+
 - (void)getCarrierInfo:(CDVInvokedUrlCommand*)command
 {
     // Run in background thread
